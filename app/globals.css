@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Основные цвета для темы "Скалк" (светлая) */
+    --background: 230 25% 98%; 
+    --foreground: 228 15% 18%; 
+
+    --card: 0 0% 100%; 
+    --card-foreground: 228 15% 18%; 
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 228 15% 18%;
+
+    --primary: 240 70% 50%; 
+    --primary-foreground: 230 25% 98%; 
+    --primary-rgb: 64, 128, 255; 
+
+    --secondary: 235 40% 90%; 
+    --secondary-foreground: 228 15% 18%;
+
+    --muted: 235 30% 95%;
+    --muted-foreground: 228 10% 40%;
+
+    --accent: 245 50% 85%; 
+    --accent-foreground: 240 60% 30%; 
+
+    --destructive: 350 70% 50%; 
+    --destructive-foreground: 230 25% 98%;
+
+    --border: 235 30% 90%;
+    --input: 235 30% 90%;
+    --ring: 240 70% 50%; 
+
+    --radius: 0.75rem;
+  }
+
+  /* Улучшенная темная тема "Глубинный Скалк" */
+  .dark {
+    --background: 230 25% 12%; /* Более мягкий темный фон */
+    --foreground: 230 40% 85%; /* Более читаемый светлый текст */
+
+    --card: 230 25% 15%; /* Темные карточки с легким оттенком */
+    --card-foreground: 230 40% 85%; 
+
+    --popover: 230 25% 15%;
+    --popover-foreground: 230 40% 85%;
+
+    --primary: 240 60% 60%; /* Менее насыщенный основной цвет */
+    --primary-foreground: 230 25% 12%;
+    --primary-rgb: 100, 150, 255;
+
+    --secondary: 235 35% 25%; /* Более сбалансированный вторичный цвет */
+    --secondary-foreground: 230 40% 85%;
+
+    --muted: 235 25% 20%;
+    --muted-foreground: 230 30% 70%;
+
+    --accent: 245 45% 30%; /* Менее яркий акцент */
+    --accent-foreground: 240 55% 80%;
+
+    --destructive: 350 50% 40%;
+    --destructive-foreground: 230 40% 85%;
+
+    --border: 235 25% 20%;
+    --input: 235 25% 20%;
+    --ring: 240 60% 60%; 
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-bold tracking-tight;
+  }
+  h1 {
+    @apply text-4xl sm:text-5xl md:text-6xl;
+  }
+  h2 {
+    @apply text-3xl sm:text-4xl;
+  }
+  h3 {
+    @apply text-2xl sm:text-3xl;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/20;
+  }
+
+  /* Варианты для темной темы */
+  .dark .glass-card {
+    @apply bg-black/50 border-white/10;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent-foreground animate-gradient-shift;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-glow;
+  }
+
+  .button-glow {
+    @apply relative overflow-hidden;
+  }
+
+  .button-glow::after {
+    @apply content-[''] absolute inset-0 rounded-lg opacity-0 transition-opacity duration-500 bg-gradient-to-r from-primary/20 to-accent-foreground/20;
+  }
+
+  .button-glow:hover::after {
+    @apply opacity-100;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/50 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/70;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Text selection */
+::selection {
+  @apply bg-primary/20 text-foreground;
+}
